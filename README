@@ -1,0 +1,25 @@
+Mars Rover Simulator:
+
+A C++ based 2D rover simulation exploring autonomous navigation, terrain interaction, and robotics concepts.
+
+Planned Features:
+
+- 2D grid-based environment
+- Manual rover control
+- Obstacle and collision detection
+- Terrain generation
+- Battery management system
+- Autonomous navigation using pathfinding algorithms (A*)
+
+Built With:
+
+- C++
+- CMake
+
+Project Goals:
+
+This project aims to explore software concepts used in robotics and autonomous systems, including:
+- Object-oriented programming
+- Algorithms and data structures
+- Pathfinding
+- Simulation design
