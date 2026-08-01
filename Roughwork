@@ -1,0 +1,10 @@
+rover-simulator/
+│
+├── src/
+│   └── main.cpp
+│
+├── README.md
+│
+├── .gitignore
+│
+└── CMakeLists.txt
