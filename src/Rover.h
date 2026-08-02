@@ -9,12 +9,15 @@ private:
     int battery;
 
 public:
-    Rover();
+    Rover(int startX, int startY);
 
     void moveUp();
     void moveDown();
     void moveLeft();
     void moveRight();
+  
+    int getX();
+    int getY();
 
     void displayStatus();
 };

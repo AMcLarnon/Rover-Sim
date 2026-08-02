@@ -2,10 +2,10 @@
 #include <iostream>
 
 
-Rover::Rover()
+Rover::Rover(int startX, int startY)
 {
-    xPosition = 0;
-    yPosition = 0;
+    xPosition = startX;
+    yPosition = startY;
     battery = 100;
 }
 
@@ -33,6 +33,17 @@ void Rover::moveRight()
     xPosition++;
 }
 
+
+int Rover::getX()
+{
+    return xPosition;
+}
+
+
+int Rover::getY()
+{
+    return yPosition;
+}
 
 void Rover::displayStatus()
 {

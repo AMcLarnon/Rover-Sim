@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-    Rover rover;
+    Rover rover(5, 10);
     char command;
 
     while (true) {
