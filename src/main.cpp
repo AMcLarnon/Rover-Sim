@@ -1,41 +1,30 @@
+#include "Rover.h"
 #include <iostream>
 
-int main()
-{
-    int battery = 100;
-    int xPosition = 0;
-    int yPosition = 0;
-
+int main() {
+    Rover rover;
     char command;
 
-    std::cout << "Rover status:" << std::endl;
-    std::cout << "Battery: " << battery << "%" << std::endl;
-    std::cout << "Position: (" << xPosition << ", " << yPosition << ")" << std::endl;
+    while (true) {
+        rover.displayStatus();
+        std::cout << "\nEnter command (W/A/S/D, Q to quit): ";
+        std::cin >> command;
 
-    std::cout << "Enter movement command (w/a/s/d): ";
-    std::cin >> command;
-
-    if (command == 'w')
-    {
-        yPosition++;
+        if (command == 'w' || command == 'W') {
+            rover.moveUp();
+        } else if (command == 's' || command == 'S') {
+            rover.moveDown();
+        } else if (command == 'a' || command == 'A') {
+            rover.moveLeft();
+        } else if (command == 'd' || command == 'D') {
+            rover.moveRight();
+        } else if (command == 'q' || command == 'Q') {
+            break; 
+        } else {
+            std::cout << "Invalid command.\n";
+        }
     }
 
-    if (command == 's')
-    {
-        yPosition--;
-    }
-
-    if (command == 'a')
-    {
-        xPosition--;
-    }
-
-    if (command == 'd')
-    {
-        xPosition++;
-    }
-
-    std::cout << "New position: (" << xPosition << ", " << yPosition << ")" << std::endl;
-
+    std::cout << "Mission ended." << std::endl;
     return 0;
 }
