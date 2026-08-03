@@ -6,10 +6,14 @@ Grid::Grid(int gridWidth, int gridHeight) {
     height = gridHeight;
 }
 
-void Grid::display() {
+void Grid::display(int roverX, int roverY) {
     for (int row = 0; row < height; ++row) {
         for (int col = 0; col < width; ++col) {
-            std::cout << ".";
+            if (col == roverX - 1 && row == roverY - 1) {
+                std::cout << "R";
+            } else {
+                std::cout << ".";
+            }
         }
         std::cout << "\n";
     }

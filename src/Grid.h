@@ -8,8 +8,8 @@ private:
 
 public:
     Grid(int gridWidth, int gridHeight);
-
-    void display();
+    
+    void display(int roverX, int roverY);
 };
 
 #endif
