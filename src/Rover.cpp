@@ -3,10 +3,8 @@
 
 
 Rover::Rover(int startX, int startY)
+    : xPosition(startX), yPosition(startY), battery(100)
 {
-    xPosition = startX;
-    yPosition = startY;
-    battery = 100;
 }
 
 

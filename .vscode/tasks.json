@@ -10,7 +10,8 @@
                 "/nologo",
                 "/Fe${fileDirname}\\RoverSimulator.exe",
                 "${fileDirname}\\main.cpp",
-                "${fileDirname}\\Rover.cpp"
+                "${fileDirname}\\Rover.cpp",
+                "${fileDirname}\\Grid.cpp"
             ],
             "options": {
                 "cwd": "${fileDirname}"

@@ -1,9 +1,14 @@
 #include "Rover.h"
 #include <iostream>
+#include "Grid.h"
 
 int main() {
     Rover rover(5, 10);
     char command;
+
+
+     Grid grid(10, 10);
+     grid.display();
 
     while (true) {
         rover.displayStatus();
