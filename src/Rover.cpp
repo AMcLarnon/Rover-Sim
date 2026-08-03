@@ -10,13 +10,13 @@ Rover::Rover(int startX, int startY)
 
 void Rover::moveUp()
 {
-    yPosition++;
+    yPosition--;
 }
 
 
 void Rover::moveDown()
 {
-    yPosition--;
+    yPosition++;
 }
 
 
