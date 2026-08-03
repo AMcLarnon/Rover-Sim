@@ -11,10 +11,10 @@ private:
 public:
     Rover(int startX, int startY);
 
-    void moveUp();
-    void moveDown();
-    void moveLeft();
-    void moveRight();
+    void moveUp(int gridHeight);
+    void moveDown(int gridHeight);
+    void moveLeft(int gridWidth);
+    void moveRight(int gridWidth);
   
     int getX();
     int getY();

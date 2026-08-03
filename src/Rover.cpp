@@ -8,27 +8,39 @@ Rover::Rover(int startX, int startY)
 }
 
 
-void Rover::moveUp()
+void Rover::moveUp(int gridHeight)
 {
-    yPosition--;
+    if (yPosition > 1)
+    {
+        yPosition--;
+    }
 }
 
 
-void Rover::moveDown()
+void Rover::moveDown(int gridHeight)
 {
-    yPosition++;
+    if (yPosition < gridHeight)
+    {
+        yPosition++;
+    }
 }
 
 
-void Rover::moveLeft()
+void Rover::moveLeft(int gridWidth)
 {
-    xPosition--;
+    if (xPosition > 1)
+    {
+        xPosition--;
+    }
 }
 
 
-void Rover::moveRight()
+void Rover::moveRight(int gridWidth)
 {
-    xPosition++;
+    if (xPosition < gridWidth)
+    {
+        xPosition++;
+    }
 }
 
 

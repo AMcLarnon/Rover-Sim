@@ -18,13 +18,13 @@ int main() {
     std::cin >> command;
 
     if (command == 'w' || command == 'W') {
-        rover.moveUp();
+        rover.moveUp(10);
     } else if (command == 's' || command == 'S') {
-        rover.moveDown();
+        rover.moveDown(10);
     } else if (command == 'a' || command == 'A') {
-        rover.moveLeft();
+        rover.moveLeft(10);
     } else if (command == 'd' || command == 'D') {
-        rover.moveRight();
+        rover.moveRight(10);
     } else if (command == 'q' || command == 'Q') {
         break; 
     } else {

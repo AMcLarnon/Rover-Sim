@@ -7,14 +7,22 @@ Grid::Grid(int gridWidth, int gridHeight) {
 }
 
 void Grid::display(int roverX, int roverY) {
-    for (int row = 0; row < height; ++row) {
-        for (int col = 0; col < width; ++col) {
-            if (col == roverX - 1 && row == roverY - 1) {
+    for (int row = 0; row <= height + 1; ++row) {
+        for (int col = 0; col <= width + 1; ++col) {
+
+            if (row == 0 || row == height + 1 || 
+                col == 0 || col == width + 1) {
+                std::cout << "#";
+            }
+            else if (col == roverX && row == roverY) {
                 std::cout << "R";
-            } else {
+            }
+            else {
                 std::cout << ".";
             }
+
         }
+
         std::cout << "\n";
     }
 }
