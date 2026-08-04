@@ -6,20 +6,34 @@ Grid::Grid(int gridWidth, int gridHeight) {
     height = gridHeight;
 }
 
+bool Grid::isRock(int row, int col)
+{
+    return (row == 2 && col == 5) ||
+           (row == 4 && col == 7);
+}
+
+bool Grid::isBlocked(int x, int y)
+{
+    return isRock(y, x);
+}
+
 void Grid::display(int roverX, int roverY) {
     for (int row = 0; row <= height + 1; ++row) {
         for (int col = 0; col <= width + 1; ++col) {
 
-            if (row == 0 || row == height + 1 || 
-                col == 0 || col == width + 1) {
-                std::cout << "#";
-            }
+            if (row == 0 || row == height + 1 ||
+            col == 0 || col == width + 1) {
+          std::cout << "#";
+    }
             else if (col == roverX && row == roverY) {
-                std::cout << "R";
-            }
+         std::cout << "R";
+}
+          else if (isRock(row, col)) {
+          std::cout << "O";
+}
             else {
-                std::cout << ".";
-            }
+             std::cout << ".";
+}
 
         }
 

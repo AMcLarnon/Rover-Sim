@@ -10,6 +10,11 @@ public:
     Grid(int gridWidth, int gridHeight);
     
     void display(int roverX, int roverY);
+   
+    bool isRock(int row, int col);
+   
+    bool isBlocked(int x, int y);
 };
+
 
 #endif
