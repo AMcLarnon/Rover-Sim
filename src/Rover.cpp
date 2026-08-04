@@ -91,6 +91,28 @@ void Rover::turnLeft()
     }
 }
 
+void Rover::moveForward(int gridWidth, int gridHeight)
+{
+    switch (direction)
+    {
+        case NORTH:
+            moveUp(gridHeight);
+            break;
+
+        case EAST:
+            moveRight(gridWidth);
+            break;
+
+        case SOUTH:
+            moveDown(gridHeight);
+            break;
+
+        case WEST:
+            moveLeft(gridWidth);
+            break;
+    }
+}
+
 int Rover::getX()
 {
     return xPosition;

@@ -26,6 +26,7 @@ public:
     void moveRight(int gridWidth);
     void turnLeft();
     void turnRight();
+    void moveForward(int gridWidth, int gridHeight);
 
     Direction getDirection();
   

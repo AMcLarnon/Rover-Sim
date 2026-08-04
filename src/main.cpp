@@ -14,57 +14,49 @@ int main() {
 
         rover.displayStatus();
 
-        std::cout << "\nEnter command (W/A/S/D/L/R, Q to quit): ";
+        std::cout << "\nEnter command (F/L/R, Q to quit): ";
         std::cin >> command;
 
-        if (command == 'w' || command == 'W') {
 
-            if (!grid.isBlocked(rover.getX(), rover.getY() - 1)) {
-                rover.moveUp(10);
-            } else {
-                std::cout << "Movement blocked.\n";
-            }
+if (command == 'l' || command == 'L') {
 
-        } else if (command == 's' || command == 'S') {
+    rover.turnLeft();
 
-            if (!grid.isBlocked(rover.getX(), rover.getY() + 1)) {
-                rover.moveDown(10);
-            } else {
-                std::cout << "Movement blocked.\n";
-            }
-
-        } else if (command == 'a' || command == 'A') {
-
-            if (!grid.isBlocked(rover.getX() - 1, rover.getY())) {
-                rover.moveLeft(10);
-            } else {
-                std::cout << "Movement blocked.\n";
-            }
-
-        } else if (command == 'd' || command == 'D') {
-
-            if (!grid.isBlocked(rover.getX() + 1, rover.getY())) {
-                rover.moveRight(10);
-            } else {
-                std::cout << "Movement blocked.\n";
-            }
-        }
-
-        else if (command == 'l' || command == 'L') {
-
-        rover.turnLeft();
-
-    } else if (command == 'r' || command == 'R') {
+} else if (command == 'r' || command == 'R') {
 
     rover.turnRight();
 
-        } else if (command == 'q' || command == 'Q') {
-            break;
-        } else {
-            std::cout << "Invalid command.\n";
-        }
+} else if (command == 'f' || command == 'F') {
+
+    int nextX = rover.getX();
+    int nextY = rover.getY();
+
+    if (rover.getDirection() == NORTH) {
+        nextY--;
+    }
+    else if (rover.getDirection() == EAST) {
+        nextX++;
+    }
+    else if (rover.getDirection() == SOUTH) {
+        nextY++;
+    }
+    else if (rover.getDirection() == WEST) {
+        nextX--;
     }
 
-    std::cout << "Mission ended." << std::endl;
-    return 0;
-}
+    if (!grid.isBlocked(nextX, nextY)) {
+        rover.moveForward(10, 10);
+    }
+    else {
+        std::cout << "Movement blocked.\n";
+    }
+
+} else if (command == 'q' || command == 'Q') {
+
+    break;
+
+} else {
+
+    std::cout << "Invalid command.\n";
+
+} } } 
