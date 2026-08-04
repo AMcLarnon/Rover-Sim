@@ -1,6 +1,14 @@
 #ifndef ROVER_H
 #define ROVER_H
 
+enum Direction
+{
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST
+};
+
 class Rover
 {
 private:
@@ -8,6 +16,7 @@ private:
     int yPosition;
     int battery;
 
+    Direction direction;
 public:
     Rover(int startX, int startY);
 
@@ -15,6 +24,10 @@ public:
     void moveDown(int gridHeight);
     void moveLeft(int gridWidth);
     void moveRight(int gridWidth);
+    void turnLeft();
+    void turnRight();
+
+    Direction getDirection();
   
     int getX();
     int getY();

@@ -3,7 +3,10 @@
 
 
 Rover::Rover(int startX, int startY)
-    : xPosition(startX), yPosition(startY), battery(100)
+    : xPosition(startX),
+      yPosition(startY),
+      battery(100),
+      direction(NORTH)
 {
 }
 
@@ -44,15 +47,63 @@ void Rover::moveRight(int gridWidth)
 }
 
 
+void Rover::turnRight()
+{
+    switch (direction)
+    {
+        case NORTH:
+            direction = EAST;
+            break;
+
+        case EAST:
+            direction = SOUTH;
+            break;
+
+        case SOUTH:
+            direction = WEST;
+            break;
+
+        case WEST:
+            direction = NORTH;
+            break;
+    }
+}
+
+void Rover::turnLeft()
+{
+    switch (direction)
+    {
+        case NORTH:
+            direction = WEST;
+            break;
+
+        case WEST:
+            direction = SOUTH;
+            break;
+
+        case SOUTH:
+            direction = EAST;
+            break;
+
+        case EAST:
+            direction = NORTH;
+            break;
+    }
+}
+
 int Rover::getX()
 {
     return xPosition;
 }
 
-
 int Rover::getY()
 {
     return yPosition;
+}
+
+Direction Rover::getDirection()
+{
+    return direction;
 }
 
 void Rover::displayStatus()
@@ -68,4 +119,27 @@ void Rover::displayStatus()
               << battery
               << "%"
               << std::endl;
+
+    std::cout << "Direction: ";
+
+switch (direction)
+{
+    case NORTH:
+        std::cout << "NORTH";
+        break;
+
+    case EAST:
+        std::cout << "EAST";
+        break;
+
+    case SOUTH:
+        std::cout << "SOUTH";
+        break;
+
+    case WEST:
+        std::cout << "WEST";
+        break;
+}
+
+std::cout << std::endl;
 }

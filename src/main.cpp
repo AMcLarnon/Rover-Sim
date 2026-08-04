@@ -7,13 +7,14 @@ int main() {
     char command;
 
     Grid grid(10, 10);
+    
 
     while (true) {
         grid.display(rover.getX(), rover.getY());
 
         rover.displayStatus();
 
-        std::cout << "\nEnter command (W/A/S/D, Q to quit): ";
+        std::cout << "\nEnter command (W/A/S/D/L/R, Q to quit): ";
         std::cin >> command;
 
         if (command == 'w' || command == 'W') {
@@ -47,6 +48,15 @@ int main() {
             } else {
                 std::cout << "Movement blocked.\n";
             }
+        }
+
+        else if (command == 'l' || command == 'L') {
+
+        rover.turnLeft();
+
+    } else if (command == 'r' || command == 'R') {
+
+    rover.turnRight();
 
         } else if (command == 'q' || command == 'Q') {
             break;
