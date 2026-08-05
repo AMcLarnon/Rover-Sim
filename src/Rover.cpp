@@ -111,6 +111,7 @@ void Rover::moveForward(int gridWidth, int gridHeight)
             moveLeft(gridWidth);
             break;
     }
+    useBattery(1);
 }
 
 int Rover::getX()
@@ -123,13 +124,35 @@ int Rover::getY()
     return yPosition;
 }
 
+int Rover::getBattery()
+{
+    return battery;
+}
+
 Direction Rover::getDirection()
 {
     return direction;
 }
 
+
+void Rover::useBattery(int amount)
+{
+    battery -= amount;
+
+    if (battery < 0)
+    {
+        battery = 0;
+    }
+}
+
 void Rover::displayStatus()
 {
+
+    if (battery <= 20)
+{
+    std::cout << "Warning: Low battery!\n";
+}
+
     std::cout << "Position: (" 
               << xPosition 
               << ", " 
@@ -143,6 +166,7 @@ void Rover::displayStatus()
               << std::endl;
 
     std::cout << "Direction: ";
+
 
 switch (direction)
 {

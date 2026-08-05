@@ -13,6 +13,7 @@ int main() {
         grid.display(rover.getX(), rover.getY());
 
         rover.displayStatus();
+        
 
         std::cout << "\nEnter command (F/L/R, Q to quit): ";
         std::cin >> command;
@@ -27,6 +28,14 @@ if (command == 'l' || command == 'L') {
     rover.turnRight();
 
 } else if (command == 'f' || command == 'F') {
+
+
+    if (rover.getBattery() == 0)
+    {
+        std::cout << "Battery depleted. Rover cannot move.\n";
+    }
+    else
+    {
 
     int nextX = rover.getX();
     int nextY = rover.getY();
@@ -49,6 +58,7 @@ if (command == 'l' || command == 'L') {
     }
     else {
         std::cout << "Movement blocked.\n";
+    }
     }
 
 } else if (command == 'q' || command == 'Q') {

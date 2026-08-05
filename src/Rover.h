@@ -27,8 +27,10 @@ public:
     void turnLeft();
     void turnRight();
     void moveForward(int gridWidth, int gridHeight);
+    void useBattery(int amount);
 
     Direction getDirection();
+    int getBattery();
   
     int getX();
     int getY();
