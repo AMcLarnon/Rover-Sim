@@ -93,6 +93,9 @@ void Rover::turnLeft()
 
 void Rover::moveForward(int gridWidth, int gridHeight)
 {
+    int oldX = xPosition;
+    int oldY = yPosition;
+
     switch (direction)
     {
         case NORTH:
@@ -111,7 +114,11 @@ void Rover::moveForward(int gridWidth, int gridHeight)
             moveLeft(gridWidth);
             break;
     }
-    useBattery(1);
+
+    if (xPosition != oldX || yPosition != oldY)
+    {
+        useBattery(1);
+    }
 }
 
 int Rover::getX()

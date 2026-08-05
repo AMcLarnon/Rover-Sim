@@ -27,10 +27,9 @@ if (command == 'l' || command == 'L') {
 
     rover.turnRight();
 
-} else if (command == 'f' || command == 'F') {
-
-
-    if (rover.getBattery() == 0)
+} else if (command == 'f' || command == 'F')
+{
+    if (rover.getBattery() <= 0)
     {
         std::cout << "Battery depleted. Rover cannot move.\n";
     }
