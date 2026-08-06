@@ -31,6 +31,24 @@ bool Grid::isBlocked(int x, int y)
     return isRock(y, x);
 }
 
+int Grid::getBatteryCost(int x, int y)
+{
+    switch (terrain[y - 1][x - 1])
+    {
+        case NORMAL:
+            return 1;
+
+        case SAND:
+            return 2;
+
+        case ROCKY:
+            return 3;
+
+        default:
+            return 1;
+    }
+}
+
 void Grid::display(int roverX, int roverY)
 {
     for (int row = 0; row <= height + 1; ++row)

@@ -114,11 +114,6 @@ void Rover::moveForward(int gridWidth, int gridHeight)
             moveLeft(gridWidth);
             break;
     }
-
-    if (xPosition != oldX || yPosition != oldY)
-    {
-        useBattery(1);
-    }
 }
 
 int Rover::getX()

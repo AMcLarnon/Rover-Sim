@@ -51,13 +51,25 @@ if (command == 'l' || command == 'L') {
         nextX--;
     }
 
-    if (!grid.isBlocked(nextX, nextY)) {
-        rover.moveForward(10, 10);
+    if (!grid.isBlocked(nextX, nextY))
+{
+    int oldX = rover.getX();
+    int oldY = rover.getY();
+
+    int cost = grid.getBatteryCost(nextX, nextY);
+
+    rover.moveForward(10, 10);
+
+    if (rover.getX() != oldX || rover.getY() != oldY)
+    {
+        rover.useBattery(cost);
     }
-    else {
-        std::cout << "Movement blocked.\n";
+}
+    else
+    {
+    std::cout << "Movement blocked.\n";
     }
-    }
+ }
 
 } else if (command == 'q' || command == 'Q') {
 
@@ -69,5 +81,8 @@ if (command == 'l' || command == 'L') {
 
         } 
     } 
+
+        std::cout << "Mission ended." << std::endl;
+    return 0;
 
 } 
