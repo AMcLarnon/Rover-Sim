@@ -1,6 +1,8 @@
 #ifndef GRID_H
 #define GRID_H
 
+#include "Terrain.h"
+
 class Grid {
 private:
     int width;
@@ -14,6 +16,8 @@ public:
     bool isRock(int row, int col);
    
     bool isBlocked(int x, int y);
+
+    Terrain terrain[10][10];
 };
 
 

@@ -7,7 +7,6 @@ int main() {
     char command;
 
     Grid grid(10, 10);
-    
 
     while (true) {
         grid.display(rover.getX(), rover.getY());
@@ -68,4 +67,7 @@ if (command == 'l' || command == 'L') {
 
     std::cout << "Invalid command.\n";
 
-} } } 
+        } 
+    } 
+
+} 
