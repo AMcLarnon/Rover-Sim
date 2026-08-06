@@ -3,6 +3,7 @@
 
 Grid::Grid(int gridWidth, int gridHeight)
 {
+    srand(time(0));
     width = gridWidth;
     height = gridHeight;
 
@@ -14,10 +15,29 @@ Grid::Grid(int gridWidth, int gridHeight)
         }
     }
 
-    terrain[2][3] = SAND;
-    terrain[4][6] = ROCKY;
-    terrain[6][2] = SAND;
-    terrain[7][7] = ROCKY;
+for (int row = 1; row < height - 1; row++)
+{
+    for (int col = 1; col < width - 1; col++)
+    {
+        int chance = rand() % 100;
+
+        if (chance < 15)
+        {
+            terrain[row][col] = SAND;
+        }
+        else if (chance < 25)
+        {
+            terrain[row][col] = ROCKY;
+        }
+        else
+        {
+            terrain[row][col] = NORMAL;
+        }
+    }
+}
+
+terrain[1][1] = NORMAL;
+
 }
 
 bool Grid::isRock(int row, int col)

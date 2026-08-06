@@ -1,6 +1,8 @@
 #include "Rover.h"
 #include <iostream>
 #include "Grid.h"
+#include <cstdlib>
+#include <ctime>
 
 int main() {
     Rover rover(2, 2);
