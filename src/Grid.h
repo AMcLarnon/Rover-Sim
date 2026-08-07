@@ -11,7 +11,8 @@ private:
 public:
     Grid(int gridWidth, int gridHeight);
     
-    void display(int roverX, int roverY);
+    void display(int roverX, int roverY,
+                 int missionX, int missionY);
    
     bool isRock(int row, int col);
    

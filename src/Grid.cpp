@@ -15,9 +15,9 @@ Grid::Grid(int gridWidth, int gridHeight)
         }
     }
 
-for (int row = 1; row < height - 1; row++)
+for (int row = 0; row < height; row++)
 {
-    for (int col = 1; col < width - 1; col++)
+    for (int col = 0; col < width; col++)
     {
         int chance = rand() % 100;
 
@@ -36,7 +36,6 @@ for (int row = 1; row < height - 1; row++)
     }
 }
 
-terrain[1][1] = NORMAL;
 
 }
 
@@ -69,7 +68,7 @@ int Grid::getBatteryCost(int x, int y)
     }
 }
 
-void Grid::display(int roverX, int roverY)
+void Grid::display(int roverX, int roverY, int missionX, int missionY)
 {
     for (int row = 0; row <= height + 1; ++row)
     {
@@ -86,6 +85,10 @@ void Grid::display(int roverX, int roverY)
                 std::cout << "R";
             }
 
+            else if (col == missionX && row == missionY)
+            {
+                std::cout << "M";
+            }
             else if (isRock(row, col))
             {
                 std::cout << "O";
