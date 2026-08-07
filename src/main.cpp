@@ -13,8 +13,21 @@ int main()
 
     Grid grid(10, 10);
 
-    int missionX = 8;
-    int missionY = 6;
+    int missionX;
+    int missionY;
+
+    do
+    {
+        missionX = rand() % 10 + 1;
+        missionY = rand() % 10 + 1;
+    }
+    while (
+        (missionX == rover.getX() &&
+         missionY == rover.getY()) ||
+
+        grid.isBlocked(missionX, missionY)
+    );
+
 
     while (true)
     {
@@ -22,7 +35,8 @@ int main()
             rover.getX(),
             rover.getY(),
             missionX,
-            missionY);
+            missionY
+        );
 
         rover.displayStatus();
 
@@ -31,17 +45,21 @@ int main()
         std::cout << "Reach (" << missionX << ", " << missionY << ")\n";
         std::cout << "==============================\n";
 
+
         std::cout << "\nEnter command (F/L/R, Q to quit): ";
         std::cin >> command;
+
 
         if (command == 'l' || command == 'L')
         {
             rover.turnLeft();
         }
+
         else if (command == 'r' || command == 'R')
         {
             rover.turnRight();
         }
+
         else if (command == 'f' || command == 'F')
         {
             if (rover.getBattery() <= 0)
@@ -52,6 +70,7 @@ int main()
             {
                 int nextX = rover.getX();
                 int nextY = rover.getY();
+
 
                 if (rover.getDirection() == NORTH)
                 {
@@ -70,6 +89,7 @@ int main()
                     nextX--;
                 }
 
+
                 if (!grid.isBlocked(nextX, nextY))
                 {
                     int oldX = rover.getX();
@@ -79,9 +99,12 @@ int main()
 
                     rover.moveForward(10, 10);
 
-                    if (rover.getX() != oldX || rover.getY() != oldY)
+
+                    if (rover.getX() != oldX ||
+                        rover.getY() != oldY)
                     {
                         rover.useBattery(cost);
+
 
                         if (rover.getX() == missionX &&
                             rover.getY() == missionY)
@@ -90,6 +113,7 @@ int main()
                             std::cout << "MISSION COMPLETE!\n";
                             std::cout << "Target reached successfully.\n";
                             std::cout << "==============================\n";
+
                             break;
                         }
                     }
@@ -100,16 +124,20 @@ int main()
                 }
             }
         }
+
         else if (command == 'q' || command == 'Q')
         {
             break;
         }
+
         else
         {
             std::cout << "Invalid command.\n";
         }
     }
 
+
     std::cout << "Mission ended." << std::endl;
+
     return 0;
 }
