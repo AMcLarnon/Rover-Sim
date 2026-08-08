@@ -1,7 +1,8 @@
 #include "Grid.h"
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
+#include "Terrain.h"
+
 
 Grid::Grid(int gridWidth, int gridHeight)
 {
@@ -37,6 +38,18 @@ void Grid::generateTerrain()
             {
                 terrain[row][col] = ROCKY;
             }
+            else if (chance < 35)
+            {
+                terrain[row][col] = GRAVEL;
+            }
+            else if (chance < 45)
+            {
+                terrain[row][col] = ICE;
+            }
+            else if (chance < 50)
+            {
+                terrain[row][col] = SLOPE;
+            }
             else
             {
                 terrain[row][col] = NORMAL;
@@ -64,20 +77,9 @@ bool Grid::isBlocked(int x, int y)
 
 int Grid::getBatteryCost(int x, int y)
 {
-    switch (terrain[y - 1][x - 1])
-    {
-        case NORMAL:
-            return 1;
-
-        case SAND:
-            return 2;
-
-        case ROCKY:
-            return 3;
-
-        default:
-            return 1;
-    }
+    return getTerrainBatteryCost(
+        terrain[y - 1][x - 1]
+    );
 }
 
 
@@ -110,24 +112,9 @@ void Grid::display(int roverX, int roverY, int missionX, int missionY)
 
             else
             {
-                switch (terrain[row - 1][col - 1])
-                {
-                    case NORMAL:
-                        std::cout << ".";
-                        break;
-
-                    case SAND:
-                        std::cout << "~";
-                        break;
-
-                    case ROCKY:
-                        std::cout << "^";
-                        break;
-
-                    default:
-                        std::cout << ".";
-                        break;
-                }
+                std::cout << getTerrainSymbol(
+                    terrain[row - 1][col - 1]
+                );
             }
         }
 

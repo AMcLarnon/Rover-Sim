@@ -12,7 +12,8 @@
                 "${fileDirname}\\main.cpp",
                 "${fileDirname}\\Rover.cpp",
                 "${fileDirname}\\Grid.cpp",
-                "${fileDirname}\\Mission.cpp"
+                "${fileDirname}\\Mission.cpp",
+                "${fileDirname}\\Terrain.cpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"

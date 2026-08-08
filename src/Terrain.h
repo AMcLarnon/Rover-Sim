@@ -1,12 +1,17 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
-enum Terrain
+enum TerrainType
 {
     NORMAL,
     SAND,
     ROCKY,
-    WALL
+    GRAVEL,
+    ICE,
+    SLOPE
 };
+
+char getTerrainSymbol(TerrainType terrain);
+int getTerrainBatteryCost(TerrainType terrain);
 
 #endif

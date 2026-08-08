@@ -1,29 +1,29 @@
 #ifndef GRID_H
 #define GRID_H
-
 #include "Terrain.h"
 
-class Grid {
+class Grid
+
+{
 private:
     int width;
     int height;
 
+    TerrainType terrain[10][10];
+
 public:
     Grid(int gridWidth, int gridHeight);
-    
+
     void display(int roverX, int roverY,
                  int missionX, int missionY);
-   
+
     bool isRock(int row, int col);
-   
+
     bool isBlocked(int x, int y);
 
     void generateTerrain();
 
-    Terrain terrain[10][10];
-
-     int getBatteryCost(int x, int y);
+    int getBatteryCost(int x, int y);
 };
-
 
 #endif

@@ -63,7 +63,7 @@ int main()
 
         if (command == 'l' || command == 'L')
         {
-            rover.turnLeft();g
+            rover.turnLeft();
         }
 
         else if (command == 'x' || command == 'X')
