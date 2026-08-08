@@ -1,12 +1,19 @@
 #include "Grid.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 Grid::Grid(int gridWidth, int gridHeight)
 {
-    srand(time(0));
     width = gridWidth;
     height = gridHeight;
 
+    generateTerrain();
+}
+
+
+void Grid::generateTerrain()
+{
     for (int row = 0; row < height; row++)
     {
         for (int col = 0; col < width; col++)
@@ -15,29 +22,32 @@ Grid::Grid(int gridWidth, int gridHeight)
         }
     }
 
-for (int row = 0; row < height; row++)
-{
-    for (int col = 0; col < width; col++)
-    {
-        int chance = rand() % 100;
 
-        if (chance < 15)
+    for (int row = 1; row < height - 1; row++)
+    {
+        for (int col = 1; col < width - 1; col++)
         {
-            terrain[row][col] = SAND;
-        }
-        else if (chance < 25)
-        {
-            terrain[row][col] = ROCKY;
-        }
-        else
-        {
-            terrain[row][col] = NORMAL;
+            int chance = rand() % 100;
+
+            if (chance < 15)
+            {
+                terrain[row][col] = SAND;
+            }
+            else if (chance < 25)
+            {
+                terrain[row][col] = ROCKY;
+            }
+            else
+            {
+                terrain[row][col] = NORMAL;
+            }
         }
     }
-}
 
 
+    terrain[1][1] = NORMAL;
 }
+
 
 bool Grid::isRock(int row, int col)
 {
@@ -45,10 +55,12 @@ bool Grid::isRock(int row, int col)
            (row == 4 && col == 7);
 }
 
+
 bool Grid::isBlocked(int x, int y)
 {
     return isRock(y, x);
 }
+
 
 int Grid::getBatteryCost(int x, int y)
 {
@@ -67,6 +79,7 @@ int Grid::getBatteryCost(int x, int y)
             return 1;
     }
 }
+
 
 void Grid::display(int roverX, int roverY, int missionX, int missionY)
 {
@@ -89,6 +102,7 @@ void Grid::display(int roverX, int roverY, int missionX, int missionY)
             {
                 std::cout << "M";
             }
+
             else if (isRock(row, col))
             {
                 std::cout << "O";

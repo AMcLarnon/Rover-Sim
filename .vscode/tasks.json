@@ -11,7 +11,8 @@
                 "/Fe${fileDirname}\\RoverSimulator.exe",
                 "${fileDirname}\\main.cpp",
                 "${fileDirname}\\Rover.cpp",
-                "${fileDirname}\\Grid.cpp"
+                "${fileDirname}\\Grid.cpp",
+                "${fileDirname}\\Mission.cpp"
             ],
             "options": {
                 "cwd": "${fileDirname}"

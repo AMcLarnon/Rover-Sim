@@ -10,6 +10,13 @@ Rover::Rover(int startX, int startY)
 {
 }
 
+void Rover::reset(int startX, int startY)
+{
+    xPosition = startX;
+    yPosition = startY;
+    battery = 100;
+    direction = NORTH;
+}
 
 void Rover::moveUp(int gridHeight)
 {

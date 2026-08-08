@@ -18,6 +18,8 @@ public:
    
     bool isBlocked(int x, int y);
 
+    void generateTerrain();
+
     Terrain terrain[10][10];
 
      int getBatteryCost(int x, int y);

@@ -1,5 +1,6 @@
 #include "Rover.h"
 #include "Grid.h"
+#include "Mission.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -13,6 +14,8 @@ int main()
 
     Grid grid(10, 10);
 
+    Mission mission(0, 0);
+
     int missionX;
     int missionY;
 
@@ -20,13 +23,15 @@ int main()
     {
         missionX = rand() % 10 + 1;
         missionY = rand() % 10 + 1;
-    }
-    while (
+
+    } while (
         (missionX == rover.getX() &&
          missionY == rover.getY()) ||
 
         grid.isBlocked(missionX, missionY)
     );
+
+    mission.setTarget(missionX, missionY);
 
 
     while (true)
@@ -34,31 +39,60 @@ int main()
         grid.display(
             rover.getX(),
             rover.getY(),
-            missionX,
-            missionY
+            mission.getX(),
+            mission.getY()
         );
 
-        rover.displayStatus();
 
         std::cout << "\n==============================\n";
         std::cout << "MISSION\n";
-        std::cout << "Reach (" << missionX << ", " << missionY << ")\n";
+        std::cout << "Reach (" 
+                  << mission.getX()
+                  << ", "
+                  << mission.getY()
+                  << ")\n";
         std::cout << "==============================\n";
 
 
-        std::cout << "\nEnter command (F/L/R, Q to quit): ";
+        rover.displayStatus();
+
+
+        std::cout << "\nEnter command (F/L/R, Q to quit, X to reset): ";
         std::cin >> command;
 
 
         if (command == 'l' || command == 'L')
         {
-            rover.turnLeft();
+            rover.turnLeft();g
         }
+
+        else if (command == 'x' || command == 'X')
+{
+    rover.reset(2, 2);
+
+    grid.generateTerrain();
+
+    do
+    {
+        missionX = rand() % 10 + 1;
+        missionY = rand() % 10 + 1;
+
+    } while (
+        (missionX == rover.getX() &&
+         missionY == rover.getY()) ||
+        grid.isBlocked(missionX, missionY)
+    );
+
+    mission.reset(missionX, missionY);
+
+    std::cout << "\nSimulator reset!\n";
+}
 
         else if (command == 'r' || command == 'R')
         {
             rover.turnRight();
         }
+
 
         else if (command == 'f' || command == 'F')
         {
@@ -100,22 +134,28 @@ int main()
                     rover.moveForward(10, 10);
 
 
+                    // Only drain battery if rover actually moved
                     if (rover.getX() != oldX ||
                         rover.getY() != oldY)
                     {
                         rover.useBattery(cost);
+                    }
 
 
-                        if (rover.getX() == missionX &&
-                            rover.getY() == missionY)
-                        {
-                            std::cout << "\n==============================\n";
-                            std::cout << "MISSION COMPLETE!\n";
-                            std::cout << "Target reached successfully.\n";
-                            std::cout << "==============================\n";
+                    mission.checkCompletion(
+                        rover.getX(),
+                        rover.getY()
+                    );
 
-                            break;
-                        }
+
+                    if (mission.isComplete())
+                    {
+                        std::cout << "\n==============================\n";
+                        std::cout << "MISSION COMPLETE!\n";
+                        std::cout << "Target reached successfully.\n";
+                        std::cout << "==============================\n";
+
+                        break;
                     }
                 }
                 else
@@ -125,10 +165,12 @@ int main()
             }
         }
 
+
         else if (command == 'q' || command == 'Q')
         {
             break;
         }
+
 
         else
         {
