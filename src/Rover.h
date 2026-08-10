@@ -29,6 +29,7 @@ public:
     void moveForward(int gridWidth, int gridHeight);
     void useBattery(int amount);
     void reset(int startX, int startY);
+    void recharge();
 
     Direction getDirection();
     int getBattery();

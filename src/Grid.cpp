@@ -83,7 +83,13 @@ int Grid::getBatteryCost(int x, int y)
 }
 
 
-void Grid::display(int roverX, int roverY, int missionX, int missionY)
+void Grid::display(
+    int roverX,
+    int roverY,
+    int missionX,
+    int missionY,
+    int stationX,
+    int stationY)
 {
     for (int row = 0; row <= height + 1; ++row)
     {
@@ -109,7 +115,10 @@ void Grid::display(int roverX, int roverY, int missionX, int missionY)
             {
                 std::cout << "O";
             }
-
+            else if (col == stationX && row == stationY)
+            {
+                std::cout << "C";
+            }
             else
             {
                 std::cout << getTerrainSymbol(

@@ -10,6 +10,11 @@ Rover::Rover(int startX, int startY)
 {
 }
 
+void Rover::recharge()
+{
+    battery = 100;
+}
+
 void Rover::reset(int startX, int startY)
 {
     xPosition = startX;

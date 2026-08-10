@@ -1,6 +1,8 @@
+
 #include "Rover.h"
 #include "Grid.h"
 #include "Mission.h"
+#include "RechargeStation.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -19,6 +21,9 @@ int main()
     int missionX;
     int missionY;
 
+    int stationX;
+    int stationY;
+
     do
     {
         missionX = rand() % 10 + 1;
@@ -33,20 +38,39 @@ int main()
 
     mission.setTarget(missionX, missionY);
 
+    do
+    {
+        stationX = rand() % 10 + 1;
+        stationY = rand() % 10 + 1;
+
+    } while (
+        (stationX == rover.getX() &&
+         stationY == rover.getY()) ||
+
+        (stationX == mission.getX() &&
+         stationY == mission.getY()) ||
+
+        grid.isBlocked(stationX, stationY)
+    );
+
+    RechargeStation station(stationX, stationY);
+
 
     while (true)
     {
+
         grid.display(
             rover.getX(),
             rover.getY(),
             mission.getX(),
-            mission.getY()
+            mission.getY(),
+            station.getX(),
+            station.getY()
         );
-
 
         std::cout << "\n==============================\n";
         std::cout << "MISSION\n";
-        std::cout << "Reach (" 
+        std::cout << "Reach ("
                   << mission.getX()
                   << ", "
                   << mission.getY()
@@ -57,7 +81,9 @@ int main()
         rover.displayStatus();
 
 
-        std::cout << "\nEnter command (F/L/R, Q to quit, X to reset): ";
+        std::cout << "\nEnter command "
+                  << "(F/L/R, Q to quit, X to reset, C to recharge): ";
+
         std::cin >> command;
 
 
@@ -66,27 +92,49 @@ int main()
             rover.turnLeft();
         }
 
+
         else if (command == 'x' || command == 'X')
-{
-    rover.reset(2, 2);
+        {
+            rover.reset(2, 2);
 
-    grid.generateTerrain();
+            grid.generateTerrain();
 
-    do
-    {
-        missionX = rand() % 10 + 1;
-        missionY = rand() % 10 + 1;
 
-    } while (
-        (missionX == rover.getX() &&
-         missionY == rover.getY()) ||
-        grid.isBlocked(missionX, missionY)
-    );
+            do
+            {
+                missionX = rand() % 10 + 1;
+                missionY = rand() % 10 + 1;
 
-    mission.reset(missionX, missionY);
+            } while (
+                (missionX == rover.getX() &&
+                 missionY == rover.getY()) ||
 
-    std::cout << "\nSimulator reset!\n";
-}
+                grid.isBlocked(missionX, missionY)
+            );
+
+            mission.reset(missionX, missionY);
+
+
+            do
+            {
+                stationX = rand() % 10 + 1;
+                stationY = rand() % 10 + 1;
+
+            } while (
+                (stationX == rover.getX() &&
+                 stationY == rover.getY()) ||
+
+                (stationX == mission.getX() &&
+                 stationY == mission.getY()) ||
+
+                grid.isBlocked(stationX, stationY)
+            );
+
+            station.setPosition(stationX, stationY);
+
+            std::cout << "\nSimulator reset!\n";
+        }
+
 
         else if (command == 'r' || command == 'R')
         {
@@ -131,15 +179,16 @@ int main()
 
                     int cost = grid.getBatteryCost(nextX, nextY);
 
+
                     rover.moveForward(10, 10);
 
 
-                    // Only drain battery if rover actually moved
                     if (rover.getX() != oldX ||
                         rover.getY() != oldY)
                     {
                         rover.useBattery(cost);
                     }
+
 
 
                     mission.checkCompletion(
@@ -166,11 +215,26 @@ int main()
         }
 
 
+        else if (command == 'c' || command == 'C')
+        {
+            if (rover.getX() == station.getX() &&
+                rover.getY() == station.getY())
+            {
+                rover.recharge();
+
+                std::cout << "Battery fully recharged!\n";
+            }
+            else
+            {
+                std::cout << "No recharge station here.\n";
+            }
+        }
+
+
         else if (command == 'q' || command == 'Q')
         {
             break;
         }
-
 
         else
         {
