@@ -54,6 +54,14 @@ int main()
     );
 
     RechargeStation station(stationX, stationY);
+    grid.generateRocks(
+    rover.getX(),
+    rover.getY(),
+    mission.getX(),
+    mission.getY(),
+    station.getX(),
+    station.getY()
+);
 
 
     while (true)
@@ -131,6 +139,15 @@ int main()
             );
 
             station.setPosition(stationX, stationY);
+
+            grid.generateRocks(
+    rover.getX(),
+    rover.getY(),
+    mission.getX(),
+    mission.getY(),
+    station.getX(),
+    station.getY()
+);
 
             std::cout << "\nSimulator reset!\n";
         }

@@ -61,11 +61,47 @@ void Grid::generateTerrain()
     terrain[1][1] = NORMAL;
 }
 
+void Grid::generateRocks(int roverX, int roverY,
+                         int missionX, int missionY,
+                         int stationX, int stationY)
+{
+    for (int row = 0; row < height; row++)
+    {
+        for (int col = 0; col < width; col++)
+        {
+            rocks[row][col] = false;
+        }
+    }
+
+    int rocksToPlace = 2;
+    int placed = 0;
+
+    while (placed < rocksToPlace)
+    {
+        int row = rand() % height;
+        int col = rand() % width;
+
+        int x = col + 1;
+        int y = row + 1;
+
+        if ((x == roverX && y == roverY) ||
+            (x == missionX && y == missionY) ||
+            (x == stationX && y == stationY))
+        {
+            continue;
+        }
+
+        if (!rocks[row][col])
+        {
+            rocks[row][col] = true;
+            placed++;
+        }
+    }
+}
 
 bool Grid::isRock(int row, int col)
 {
-    return (row == 2 && col == 5) ||
-           (row == 4 && col == 7);
+    return rocks[row - 1][col - 1];
 }
 
 

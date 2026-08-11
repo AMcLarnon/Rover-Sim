@@ -10,6 +10,7 @@ private:
     int height;
 
     TerrainType terrain[10][10];
+    bool rocks[10][10];
 
 public:
     Grid(int gridWidth, int gridHeight);
@@ -25,6 +26,10 @@ public:
     void generateTerrain();
 
     int getBatteryCost(int x, int y);
+
+    void generateRocks(int roverX, int roverY,
+                   int missionX, int missionY,
+                   int stationX, int stationY);
 };
 
 #endif
