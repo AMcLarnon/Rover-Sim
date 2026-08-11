@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "Mission.h"
 #include "RechargeStation.h"
+#include "Sensor.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -15,6 +16,7 @@ int main()
     char command;
 
     Grid grid(10, 10);
+    Sensor sensor(2);
 
     Mission mission(0, 0);
 
@@ -90,7 +92,7 @@ int main()
 
 
         std::cout << "\nEnter command "
-                  << "(F/L/R, Q to quit, X to reset, C to recharge): ";
+                  << "(F/L/R, Q to quit, X to reset, C to recharge, S to scan): ";
 
         std::cin >> command;
 
@@ -247,6 +249,20 @@ int main()
             }
         }
 
+        else if (command == 's' || command == 'S')
+{
+    sensor.scan(
+    rover.getX(),
+    rover.getY(),
+    rover.getDirection(),
+    grid,
+    mission.getX(),
+    mission.getY(),
+    station.getX(),
+    station.getY()
+);
+
+}
 
         else if (command == 'q' || command == 'Q')
         {

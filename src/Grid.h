@@ -30,6 +30,8 @@ public:
     void generateRocks(int roverX, int roverY,
                    int missionX, int missionY,
                    int stationX, int stationY);
+
+    TerrainType getTerrain(int x, int y);
 };
 
 #endif

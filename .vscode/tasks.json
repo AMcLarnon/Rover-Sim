@@ -14,7 +14,8 @@
                 "${fileDirname}\\Grid.cpp",
                 "${fileDirname}\\Mission.cpp",
                 "${fileDirname}\\Terrain.cpp",
-                "${fileDirname}\\RechargeStation.cpp"
+                "${fileDirname}\\RechargeStation.cpp",
+                "${fileDirname}\\Sensor.cpp"
             ],
             "options": {
                 "cwd": "${fileDirname}"

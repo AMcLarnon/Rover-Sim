@@ -61,6 +61,11 @@ void Grid::generateTerrain()
     terrain[1][1] = NORMAL;
 }
 
+TerrainType Grid::getTerrain(int x, int y)
+{
+    return terrain[y - 1][x - 1];
+}
+
 void Grid::generateRocks(int roverX, int roverY,
                          int missionX, int missionY,
                          int stationX, int stationY)
