@@ -112,6 +112,12 @@ bool Grid::isRock(int row, int col)
 
 bool Grid::isBlocked(int x, int y)
 {
+    if (x < 1 || x > width ||
+        y < 1 || y > height)
+    {
+        return true;
+    }
+
     return isRock(y, x);
 }
 

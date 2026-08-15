@@ -4,6 +4,7 @@
 #include "Mission.h"
 #include "RechargeStation.h"
 #include "Sensor.h"
+#include "Navigation.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -16,6 +17,7 @@ int main()
     char command;
 
     Grid grid(10, 10);
+    Navigation navigation;
     Sensor sensor(2);
 
     Mission mission(0, 0);
@@ -92,7 +94,7 @@ int main()
 
 
         std::cout << "\nEnter command "
-                  << "(F/L/R, Q to quit, X to reset, C to recharge, S to scan): ";
+                  << "(F/L/R, Q to quit, X to reset, C to recharge, S to scan, N to navigate): ";
 
         std::cin >> command;
 
@@ -262,6 +264,15 @@ int main()
     station.getY()
 );
 
+}
+
+else if (command == 'n' || command == 'N')
+{
+    navigation.checkNeighbours(
+        rover.getX(),
+        rover.getY(),
+        grid
+    );
 }
 
         else if (command == 'q' || command == 'Q')
